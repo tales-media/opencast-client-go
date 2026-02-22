@@ -63,7 +63,7 @@ type CreateEventTrackRequestBody struct {
 	Flavor              base.Flavor
 	OverwriteExisting   bool
 	Tags                []string
-	TrackFile           string // TODO: allow option to use io.Reader
+	TrackFile           string
 	TrackStream         io.ReadCloser
 	TrackStreamFilename string
 }

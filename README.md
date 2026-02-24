@@ -85,10 +85,10 @@ Note that list requests are generally paginated and thus only return one page. Y
 
 ```go
 var allEvents []extapiv1.Event
-err = oc.Paginate(
+err := oc.Paginate(
 	extAPI,
 	func(i int) (*oc.Request, error) {
-		req, err := extAPI.ListEventRequest(
+		return extAPI.ListEventRequest(
 			context.Background(),
 			extapiclientv1.WithPagination{
 				Limit:  100,
@@ -103,10 +103,6 @@ err = oc.Paginate(
 				OnlyWithWriteAccess:        true,
 			},
 		)
-		if err != nil {
-			return nil, err
-		}
-		return req, nil
 	},
 	oc.CollectAllPages(&allEvents),
 )

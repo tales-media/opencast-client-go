@@ -32,12 +32,14 @@ type Doer interface {
 
 type Client interface {
 	Doer
+
+	ApplyOptions(opts ...ClientOpts) error
 }
 
 type client struct {
 	sm      ServiceMapper
 	http    http.Client
-	ReqOpts []RequestOpts
+	reqOpts []RequestOpts
 }
 
 var _ Client = &client{}
@@ -45,7 +47,7 @@ var _ Client = &client{}
 func New(sm ServiceMapper, opts ...ClientOpts) (Client, error) {
 	c := &client{
 		sm: sm,
-		ReqOpts: []RequestOpts{
+		reqOpts: []RequestOpts{
 			WithHeader("User-Agent", UserAgent),
 		},
 	}
@@ -65,7 +67,7 @@ func (c *client) ApplyOptions(opts ...ClientOpts) error {
 }
 
 func (c *client) Do(req *Request) (*Response, error) {
-	if err := req.ApplyOptions(c.ReqOpts...); err != nil {
+	if err := req.ApplyOptions(c.reqOpts...); err != nil {
 		return nil, err
 	}
 
@@ -103,7 +105,7 @@ func WithHTTPClient(h http.Client) ClientOpts {
 
 func WithRequestOptions(opts ...RequestOpts) ClientOpts {
 	return ClientOptsFunc(func(c *client) error {
-		c.ReqOpts = append(c.ReqOpts, opts...)
+		c.reqOpts = append(c.reqOpts, opts...)
 		return nil
 	})
 }

@@ -48,7 +48,7 @@ func (c *client) SignURLRequest(ctx context.Context, body *SignURLRequestBody, o
 	if body.ValidSource != "" {
 		mp.AddPart(multipart.FormFieldString("valid-source", body.ValidSource))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		SecurityServiceType,

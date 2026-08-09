@@ -63,7 +63,7 @@ func (c *client) ListGroup(ctx context.Context, opts ...oc.RequestOpts) ([]extap
 }
 
 func (c *client) ListGroupRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		GroupsServiceType,
@@ -92,7 +92,7 @@ func (c *client) CreateGroupRequest(ctx context.Context, body *CreateGroupReques
 	if len(body.Members) > 0 {
 		mp.AddPart(multipart.FormFieldString("members", strings.Join(body.Members, ",")))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		GroupsServiceType,
@@ -110,7 +110,7 @@ func (c *client) GetGroup(ctx context.Context, id string, opts ...oc.RequestOpts
 }
 
 func (c *client) GetGroupRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		GroupsServiceType,
@@ -141,7 +141,7 @@ func (c *client) UpdateGroupRequest(ctx context.Context, id string, body *Update
 	if len(body.Members) > 0 {
 		mp.AddPart(multipart.FormFieldString("members", strings.Join(body.Members, ",")))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		GroupsServiceType,
@@ -159,7 +159,7 @@ func (c *client) DeleteGroup(ctx context.Context, id string, opts ...oc.RequestO
 }
 
 func (c *client) DeleteGroupRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		GroupsServiceType,
@@ -179,7 +179,7 @@ func (c *client) CreateGroupMember(ctx context.Context, id string, body *CreateG
 func (c *client) CreateGroupMemberRequest(ctx context.Context, id string, body *CreateGroupMemberRequestBody, opts ...oc.RequestOpts) (*oc.Request, error) {
 	mp := multipart.New()
 	mp.AddPart(multipart.FormFieldString("member", body.Member))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		GroupsServiceType,
@@ -197,7 +197,7 @@ func (c *client) DeleteGroupMember(ctx context.Context, id, memberID string, opt
 }
 
 func (c *client) DeleteGroupMemberRequest(ctx context.Context, id, memberID string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		GroupsServiceType,

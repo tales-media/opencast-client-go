@@ -19,6 +19,7 @@ package client
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	extapiv1 "shio.solutions/tales.media/opencast-client-go/apis/external-api/v1.11"
 	"shio.solutions/tales.media/opencast-client-go/apis/meta/base"
@@ -311,12 +312,13 @@ func New(opencastClient oc.Client) *client {
 	}
 }
 
+func NewRequest(ctx context.Context, method, service, path string, body oc.Body, opts ...oc.RequestOpts) (*oc.Request, error) {
+	// set external API Accept header, but place it at the front of the list to allow for overrides
+	opts = slices.Insert(opts, 0, oc.WithHeader("Accept", AcceptJSONHeader))
+	return oc.NewRequest(ctx, method, service, path, body, opts...)
+}
+
 func (c *client) Do(req *oc.Request) (*oc.Response, error) {
-	if err := req.ApplyOptions(
-		oc.WithHeader("Accept", AcceptJSONHeader),
-	); err != nil {
-		return nil, err
-	}
 	return c.occ.Do(req)
 }
 
@@ -332,7 +334,7 @@ func (c *client) GetAPI(ctx context.Context, opts ...oc.RequestOpts) (*extapiv1.
 }
 
 func (c *client) GetAPIRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -350,7 +352,7 @@ func (c *client) GetAPIVersion(ctx context.Context, opts ...oc.RequestOpts) (*ex
 }
 
 func (c *client) GetAPIVersionRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -368,7 +370,7 @@ func (c *client) GetAPIVersionDefault(ctx context.Context, opts ...oc.RequestOpt
 }
 
 func (c *client) GetAPIVersionDefaultRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,

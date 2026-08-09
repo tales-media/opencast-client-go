@@ -47,7 +47,7 @@ func (c *client) ListPlaylist(ctx context.Context, opts ...oc.RequestOpts) ([]ex
 }
 
 func (c *client) ListPlaylistRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		PlaylistsServiceType,
@@ -71,7 +71,7 @@ func (c *client) CreatePlaylistRequest(ctx context.Context, body *CreatePlaylist
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("playlist", playlist))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		PlaylistsServiceType,
@@ -89,7 +89,7 @@ func (c *client) GetPlaylist(ctx context.Context, id string, opts ...oc.RequestO
 }
 
 func (c *client) GetPlaylistRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		PlaylistsServiceType,
@@ -113,7 +113,7 @@ func (c *client) UpdatePlaylistRequest(ctx context.Context, id string, body *Upd
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("playlist", playlist))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		PlaylistsServiceType,
@@ -131,7 +131,7 @@ func (c *client) DeletePlaylist(ctx context.Context, id string, opts ...oc.Reque
 }
 
 func (c *client) DeletePlaylistRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		PlaylistsServiceType,

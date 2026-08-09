@@ -76,7 +76,7 @@ func (c *client) CreateWorkflowRequest(ctx context.Context, body *CreateWorkflow
 		}
 		mp.AddPart(multipart.FormField("configuration", configuration))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		WorkflowInstancesServiceType,
@@ -94,7 +94,7 @@ func (c *client) GetWorkflow(ctx context.Context, id string, opts ...oc.RequestO
 }
 
 func (c *client) GetWorkflowRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		WorkflowInstancesServiceType,
@@ -123,7 +123,7 @@ func (c *client) UpdateWorkflowRequest(ctx context.Context, id string, body *Upd
 		}
 		mp.AddPart(multipart.FormField("configuration", configuration))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		WorkflowInstancesServiceType,
@@ -141,7 +141,7 @@ func (c *client) DeleteWorkflow(ctx context.Context, id string, opts ...oc.Reque
 }
 
 func (c *client) DeleteWorkflowRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		WorkflowInstancesServiceType,

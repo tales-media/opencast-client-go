@@ -60,7 +60,7 @@ func (c *client) ListStatisticProvider(ctx context.Context, opts ...oc.RequestOp
 }
 
 func (c *client) ListStatisticProviderRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		StatisticsServiceType,
@@ -78,7 +78,7 @@ func (c *client) GetStatisticProvider(ctx context.Context, id string, opts ...oc
 }
 
 func (c *client) GetStatisticProviderRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		StatisticsServiceType,
@@ -102,7 +102,7 @@ func (c *client) QueryStatisticRequest(ctx context.Context, body *QueryStatistic
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("data", data))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		StatisticsServiceType,
@@ -126,7 +126,7 @@ func (c *client) ExportCSVStatisticRequest(ctx context.Context, body *ExportCSVS
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("data", data))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		StatisticsServiceType,

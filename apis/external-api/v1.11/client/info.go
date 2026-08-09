@@ -33,7 +33,7 @@ func (c *client) GetInfoOrganization(ctx context.Context, opts ...oc.RequestOpts
 }
 
 func (c *client) GetInfoOrganizationRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -51,7 +51,7 @@ func (c *client) GetInfoOrganizationProperties(ctx context.Context, opts ...oc.R
 }
 
 func (c *client) GetInfoOrganizationPropertiesRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -69,7 +69,7 @@ func (c *client) GetInfoOrganizationPropertiesEngageUIURL(ctx context.Context, o
 }
 
 func (c *client) GetInfoOrganizationPropertiesEngageUIURLRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -87,7 +87,7 @@ func (c *client) GetInfoMe(ctx context.Context, opts ...oc.RequestOpts) (*extapi
 }
 
 func (c *client) GetInfoMeRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,
@@ -105,7 +105,7 @@ func (c *client) GetInfoMeRoles(ctx context.Context, opts ...oc.RequestOpts) ([]
 }
 
 func (c *client) GetInfoMeRolesRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ServiceType,

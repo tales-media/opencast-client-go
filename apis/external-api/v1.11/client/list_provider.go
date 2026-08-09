@@ -40,7 +40,7 @@ func (c *client) ListListProvider(ctx context.Context, opts ...oc.RequestOpts) (
 }
 
 func (c *client) ListListProviderRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ListProvidersServiceType,
@@ -58,7 +58,7 @@ func (c *client) GetListProvider(ctx context.Context, source string, opts ...oc.
 }
 
 func (c *client) GetListProviderRequest(ctx context.Context, source string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		ListProvidersServiceType,

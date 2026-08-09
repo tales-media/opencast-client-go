@@ -190,7 +190,7 @@ func (c *client) ListSeries(ctx context.Context, opts ...oc.RequestOpts) ([]exta
 }
 
 func (c *client) ListSeriesRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -208,7 +208,7 @@ func (c *client) SearchSeries(ctx context.Context, opts ...oc.RequestOpts) ([]ex
 }
 
 func (c *client) SearchSeriesRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -248,7 +248,7 @@ func (c *client) CreateSeriesRequest(ctx context.Context, body *CreateSeriesRequ
 		mp.AddPart(multipart.FormFieldString("theme", body.Theme))
 	}
 
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		SeriesServiceType,
@@ -266,7 +266,7 @@ func (c *client) GetSeries(ctx context.Context, id string, opts ...oc.RequestOpt
 }
 
 func (c *client) GetSeriesRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -294,7 +294,7 @@ func (c *client) UpdateSeriesRequest(ctx context.Context, id string, body *Updat
 		mp.AddPart(multipart.FormField("metadata", metadata))
 	}
 
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		SeriesServiceType,
@@ -312,7 +312,7 @@ func (c *client) DeleteSeries(ctx context.Context, id string, opts ...oc.Request
 }
 
 func (c *client) DeleteSeriesRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		SeriesServiceType,
@@ -330,7 +330,7 @@ func (c *client) GetSeriesACL(ctx context.Context, id string, opts ...oc.Request
 }
 
 func (c *client) GetSeriesACLRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -357,7 +357,7 @@ func (c *client) UpdateSeriesACLRequest(ctx context.Context, id string, body *Up
 	if body.Override {
 		mp.AddPart(multipart.FormFieldString("override", strconv.FormatBool(body.Override)))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		SeriesServiceType,
@@ -375,7 +375,7 @@ func (c *client) ListSeriesMetadata(ctx context.Context, id string, opts ...oc.R
 }
 
 func (c *client) ListSeriesMetadataRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -401,7 +401,7 @@ func (c *client) GetSeriesMetadata(ctx context.Context, id string, flavor base.F
 }
 
 func (c *client) GetSeriesMetadataRequest(ctx context.Context, id string, flavor base.Flavor, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -432,7 +432,7 @@ func (c *client) UpdateSeriesMetadataRequest(ctx context.Context, id string, fla
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("metadata", metadata))
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodPut,
 		SeriesServiceType,
@@ -457,7 +457,7 @@ func (c *client) DeleteSeriesMetadata(ctx context.Context, id string, flavor bas
 }
 
 func (c *client) DeleteSeriesMetadataRequest(ctx context.Context, id string, flavor base.Flavor, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodDelete,
 		SeriesServiceType,
@@ -482,7 +482,7 @@ func (c *client) GetSeriesProperties(ctx context.Context, id string, opts ...oc.
 }
 
 func (c *client) GetSeriesPropertiesRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		SeriesServiceType,
@@ -506,7 +506,7 @@ func (c *client) UpdateSeriesPropertiesRequest(ctx context.Context, id string, b
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("properties", properties))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		SeriesServiceType,

@@ -33,7 +33,7 @@ func (c *client) ListAgent(ctx context.Context, opts ...oc.RequestOpts) ([]extap
 }
 
 func (c *client) ListAgentRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		AgentsServiceType,
@@ -51,7 +51,7 @@ func (c *client) GetAgent(ctx context.Context, id string, opts ...oc.RequestOpts
 }
 
 func (c *client) GetAgentRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		AgentsServiceType,

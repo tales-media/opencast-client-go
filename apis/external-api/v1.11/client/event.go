@@ -146,7 +146,7 @@ func (c *client) ListEvent(ctx context.Context, opts ...oc.RequestOpts) ([]extap
 }
 
 func (c *client) ListEventRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -216,7 +216,7 @@ func (c *client) CreateEventRequest(ctx context.Context, body *CreateEventReques
 		mp.AddPart(multipart.Stream("audio", body.AudioStreamFilename, body.AudioStream))
 	}
 
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		EventsServiceType,
@@ -234,7 +234,7 @@ func (c *client) GetEvent(ctx context.Context, id string, opts ...oc.RequestOpts
 }
 
 func (c *client) GetEventRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -286,7 +286,7 @@ func (c *client) UpdateEventRequest(ctx context.Context, id string, body *Update
 		mp.AddPart(multipart.FormField("processing", processing))
 	}
 
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		EventsServiceType,
@@ -304,7 +304,7 @@ func (c *client) DeleteEvent(ctx context.Context, id string, opts ...oc.RequestO
 }
 
 func (c *client) DeleteEventRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		EventsServiceType,
@@ -322,7 +322,7 @@ func (c *client) GetEventACL(ctx context.Context, id string, opts ...oc.RequestO
 }
 
 func (c *client) GetEventACLRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -346,7 +346,7 @@ func (c *client) UpdateEventACLRequest(ctx context.Context, id string, body *Upd
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("acl", acl))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		EventsServiceType,
@@ -366,7 +366,7 @@ func (c *client) CreateEventACE(ctx context.Context, id string, action base.Acti
 func (c *client) CreateEventACERequest(ctx context.Context, id string, action base.Action, role string, opts ...oc.RequestOpts) (*oc.Request, error) {
 	mp := multipart.New()
 	mp.AddPart(multipart.FormFieldString("role", role))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		EventsServiceType,
@@ -384,7 +384,7 @@ func (c *client) DeleteEventACE(ctx context.Context, id string, action base.Acti
 }
 
 func (c *client) DeleteEventACERequest(ctx context.Context, id string, action base.Action, role string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodDelete,
 		EventsServiceType,
@@ -402,7 +402,7 @@ func (c *client) ListEventMedia(ctx context.Context, id string, opts ...oc.Reque
 }
 
 func (c *client) ListEventMediaRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -431,7 +431,7 @@ func (c *client) CreateEventTrackRequest(ctx context.Context, id string, body *C
 	} else if body.TrackStream != nil {
 		mp.AddPart(multipart.Stream("track", body.TrackStreamFilename, body.TrackStream))
 	}
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPost,
 		EventsServiceType,
@@ -449,7 +449,7 @@ func (c *client) ListEventMetadata(ctx context.Context, id string, opts ...oc.Re
 }
 
 func (c *client) ListEventMetadataRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -475,7 +475,7 @@ func (c *client) GetEventMetadata(ctx context.Context, id string, flavor base.Fl
 }
 
 func (c *client) GetEventMetadataRequest(ctx context.Context, id string, flavor base.Flavor, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -506,7 +506,7 @@ func (c *client) UpdateEventMetadataRequest(ctx context.Context, id string, flav
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("metadata", metadata))
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodPut,
 		EventsServiceType,
@@ -531,7 +531,7 @@ func (c *client) DeleteEventMetadata(ctx context.Context, id string, flavor base
 }
 
 func (c *client) DeleteEventMetadataRequest(ctx context.Context, id string, flavor base.Flavor, opts ...oc.RequestOpts) (*oc.Request, error) {
-	req, err := oc.NewRequest(
+	req, err := NewRequest(
 		ctx,
 		http.MethodDelete,
 		EventsServiceType,
@@ -556,7 +556,7 @@ func (c *client) ListEventPublication(ctx context.Context, id string, opts ...oc
 }
 
 func (c *client) ListEventPublicationRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -574,7 +574,7 @@ func (c *client) GetEventPublication(ctx context.Context, id string, publication
 }
 
 func (c *client) GetEventPublicationRequest(ctx context.Context, id string, publicationID string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -593,7 +593,7 @@ func (c *client) GetEventScheduling(ctx context.Context, id string, opts ...oc.R
 }
 
 func (c *client) GetEventSchedulingRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		EventsServiceType,
@@ -617,7 +617,7 @@ func (c *client) UpdateEventSchedulingRequest(ctx context.Context, id string, bo
 		return nil, err
 	}
 	mp.AddPart(multipart.FormField("scheduling", scheduling))
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodPut,
 		EventsServiceType,

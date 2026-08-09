@@ -60,7 +60,7 @@ func (c *client) ListWorkflowDefinition(ctx context.Context, opts ...oc.RequestO
 }
 
 func (c *client) ListWorkflowDefinitionRequest(ctx context.Context, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		WorkflowDefinitionsServiceType,
@@ -78,7 +78,7 @@ func (c *client) GetWorkflowDefinition(ctx context.Context, id string, opts ...o
 }
 
 func (c *client) GetWorkflowDefinitionRequest(ctx context.Context, id string, opts ...oc.RequestOpts) (*oc.Request, error) {
-	return oc.NewRequest(
+	return NewRequest(
 		ctx,
 		http.MethodGet,
 		WorkflowDefinitionsServiceType,

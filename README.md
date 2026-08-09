@@ -59,7 +59,7 @@ req, err := oc.NewRequest(
 resp, err := client.Do(req)
 ```
 
-You can also create an External API client provides type-safe access.
+You can also create an External API client that provides type-safe access.
 
 ```go
 extAPI := extapiclientv1.New(client)
@@ -77,7 +77,7 @@ events, resp, err := extAPI.ListEvent(
 	},
 )
 for _, event := range events {
-	fmt.Printf("%s: %s", event.Identifier, event.Title)
+	fmt.Printf("%s: %s\n", event.Identifier, event.Title)
 }
 ```
 

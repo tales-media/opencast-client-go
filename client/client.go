@@ -37,7 +37,7 @@ type Client interface {
 type client struct {
 	sm      ServiceMapper
 	http    http.Client
-	reqOpts []RequestOpts
+	ReqOpts []RequestOpts
 }
 
 var _ Client = &client{}
@@ -45,7 +45,7 @@ var _ Client = &client{}
 func New(sm ServiceMapper, opts ...ClientOpts) (Client, error) {
 	c := &client{
 		sm: sm,
-		reqOpts: []RequestOpts{
+		ReqOpts: []RequestOpts{
 			WithHeader("User-Agent", UserAgent),
 		},
 	}
@@ -65,7 +65,7 @@ func (c *client) ApplyOptions(opts ...ClientOpts) error {
 }
 
 func (c *client) Do(req *Request) (*Response, error) {
-	if err := req.ApplyOptions(c.reqOpts...); err != nil {
+	if err := req.ApplyOptions(c.ReqOpts...); err != nil {
 		return nil, err
 	}
 
@@ -103,7 +103,7 @@ func WithHTTPClient(h http.Client) ClientOpts {
 
 func WithRequestOptions(opts ...RequestOpts) ClientOpts {
 	return ClientOptsFunc(func(c *client) error {
-		c.reqOpts = opts
+		c.ReqOpts = append(c.ReqOpts, opts...)
 		return nil
 	})
 }
